@@ -54,6 +54,8 @@ namespace GeniusIdiotConsoleApp
             int countRightAnswers = 0;
             Random random = new Random();
             int countLeftQuestions = countQuestions;
+            Console.WriteLine("Введите Ваше имя: ");
+            string name = Console.ReadLine();
 
             for (int i = 0; i < countQuestions; i++)
             {
@@ -74,7 +76,7 @@ namespace GeniusIdiotConsoleApp
             
             string diagnosis = GetDiagnosis(countRightAnswers);
             Console.WriteLine($"Количество правильных ответов: {countRightAnswers}");
-            Console.WriteLine($"Ваш диагноз: {diagnosis}");
+            Console.WriteLine($"{name}, Ваш диагноз: {diagnosis}");
         }
     }
 }
