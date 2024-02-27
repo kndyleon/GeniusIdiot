@@ -5,47 +5,6 @@ namespace GeniusIdiotConsoleApp
 {
     internal class Program
     {
-        static List<string> GetQuestions(int countQuestions)
-        {
-            List<string> questions = new List<string>(countQuestions)
-            {
-                "Сколько будет два плюс два умноженное на два?",
-                "Бревно нужно распилить на 10 частей, сколько нужно сделать распилов?",
-                "На двух руках 10 пальцев. Сколько пальцев на 5 руках?",
-                "Укол делают каждые полчаса, сколько нужно минут для трёх уколов?",
-                "Пять свечей горело, две потухли. Сколько свечей осталось?"
-            };
-            return questions;
-        }
-
-        static List<int> GetAnswers(int countQuestions) 
-        {
-            List<int> answers = new List<int>(countQuestions)
-            {
-                6,
-                9,
-                25,
-                60,
-                2
-            };
-            return answers;
-        }
-
-        static string GetDiagnosis(int countRightAnswers)
-        {
-            string diagnosis = string.Empty;
-            switch (countRightAnswers)
-            {
-                case 0: diagnosis = "Идиот"; break;
-                case 1: diagnosis = "Кретин"; break;
-                case 2: diagnosis = "Дурак"; break;
-                case 3: diagnosis = "Нормальный"; break;
-                case 4: diagnosis = "Талант"; break;
-                case 5: diagnosis = "Гений"; break;
-            }
-
-            return diagnosis;
-        }
         static void Main(string[] args)
         {
             Console.Write("Введите Ваше имя: ");
@@ -88,6 +47,48 @@ namespace GeniusIdiotConsoleApp
                     userWantsToContinue = false;
                 }
             }
+        }
+
+        static List<string> GetQuestions(int countQuestions)
+        {
+            List<string> questions = new List<string>(countQuestions)
+            {
+                "Сколько будет два плюс два умноженное на два?",
+                "Бревно нужно распилить на 10 частей, сколько нужно сделать распилов?",
+                "На двух руках 10 пальцев. Сколько пальцев на 5 руках?",
+                "Укол делают каждые полчаса, сколько нужно минут для трёх уколов?",
+                "Пять свечей горело, две потухли. Сколько свечей осталось?"
+            };
+            return questions;
+        }
+
+        static List<int> GetAnswers(int countQuestions)
+        {
+            List<int> answers = new List<int>(countQuestions)
+            {
+                6,
+                9,
+                25,
+                60,
+                2
+            };
+            return answers;
+        }
+
+        static string GetDiagnosis(int countRightAnswers)
+        {
+            string diagnosis = string.Empty;
+            switch (countRightAnswers)
+            {
+                case 0: diagnosis = "Идиот"; break;
+                case 1: diagnosis = "Кретин"; break;
+                case 2: diagnosis = "Дурак"; break;
+                case 3: diagnosis = "Нормальный"; break;
+                case 4: diagnosis = "Талант"; break;
+                case 5: diagnosis = "Гений"; break;
+            }
+
+            return diagnosis;
         }
     }
 }
