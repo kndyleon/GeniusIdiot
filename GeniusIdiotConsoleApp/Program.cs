@@ -39,13 +39,7 @@ namespace GeniusIdiotConsoleApp
                 string diagnosis = GetDiagnosis(countRightAnswers);
                 Console.WriteLine($"Количество правильных ответов: {countRightAnswers}");
                 Console.WriteLine($"{name}, Ваш диагноз: {diagnosis}");
-                Console.WriteLine("Вы хотите повторить попытку? Введите да или нет.");
-                string userDecision = Console.ReadLine().ToLower();
-                if (userDecision == "нет")
-                {
-                    Console.WriteLine("Тест окончен.");
-                    userWantsToContinue = false;
-                }
+                userWantsToContinue = GetUserDecision();
             }
         }
 
@@ -89,6 +83,31 @@ namespace GeniusIdiotConsoleApp
             }
 
             return diagnosis;
+        }
+
+        static bool GetUserDecision()
+        {
+            Console.WriteLine("Хотите повторить попытку? Введите Да или Нет.");
+            bool userDecided = false;
+            while (!userDecided)
+            {
+                string userDecision = Console.ReadLine().ToLower();
+
+                if (userDecision == "да")
+                {
+                    return true;
+                }
+                if (userDecision == "нет")
+                {
+                    Console.WriteLine("Тест завершён.");
+                    return false;
+                }
+                else 
+                {
+                    Console.WriteLine("Ответ не распознан. Введите Да или Нет.");
+                }
+            }
+            return false;
         }
     }
 }
