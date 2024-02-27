@@ -48,35 +48,46 @@ namespace GeniusIdiotConsoleApp
         }
         static void Main(string[] args)
         {
-            int countQuestions = 5;
-            List<string> questions = GetQuestions(countQuestions);
-            List<int> answers = GetAnswers(countQuestions);
-            int countRightAnswers = 0;
-            Random random = new Random();
-            int countLeftQuestions = countQuestions;
-            Console.WriteLine("Введите Ваше имя: ");
+            Console.Write("Введите Ваше имя: ");
             string name = Console.ReadLine();
-
-            for (int i = 0; i < countQuestions; i++)
+            bool userWantsToContinue = true;
+            while (userWantsToContinue)
             {
-                int randomQuestionIndex = random.Next(0, countLeftQuestions);
-                Console.WriteLine($"Вопрос №{i + 1}. {questions[randomQuestionIndex]}");
+                int countQuestions = 5;
+                List<string> questions = GetQuestions(countQuestions);
+                List<int> answers = GetAnswers(countQuestions);
+                int countRightAnswers = 0;
+                Random random = new Random();
+                int countLeftQuestions = countQuestions;
 
-                int userAnswer = Convert.ToInt32(Console.ReadLine());
-                int rightAnswer = answers[randomQuestionIndex];
-
-                if (userAnswer == rightAnswer)
+                for (int i = 0; i < countQuestions; i++)
                 {
-                    countRightAnswers++;
+                    int randomQuestionIndex = random.Next(0, countLeftQuestions);
+                    Console.WriteLine($"Вопрос №{i + 1}. {questions[randomQuestionIndex]}");
+
+                    int userAnswer = Convert.ToInt32(Console.ReadLine());
+                    int rightAnswer = answers[randomQuestionIndex];
+
+                    if (userAnswer == rightAnswer)
+                    {
+                        countRightAnswers++;
+                    }
+                    countLeftQuestions--;
+                    questions.RemoveAt(randomQuestionIndex);
+                    answers.RemoveAt(randomQuestionIndex);
                 }
-                countLeftQuestions--;
-                questions.RemoveAt(randomQuestionIndex);
-                answers.RemoveAt(randomQuestionIndex);
+
+                string diagnosis = GetDiagnosis(countRightAnswers);
+                Console.WriteLine($"Количество правильных ответов: {countRightAnswers}");
+                Console.WriteLine($"{name}, Ваш диагноз: {diagnosis}");
+                Console.WriteLine("Вы хотите повторить попытку? Введите да или нет.");
+                string userDecision = Console.ReadLine().ToLower();
+                if (userDecision == "нет")
+                {
+                    Console.WriteLine("Тест окончен.");
+                    userWantsToContinue = false;
+                }
             }
-            
-            string diagnosis = GetDiagnosis(countRightAnswers);
-            Console.WriteLine($"Количество правильных ответов: {countRightAnswers}");
-            Console.WriteLine($"{name}, Ваш диагноз: {diagnosis}");
         }
     }
 }
