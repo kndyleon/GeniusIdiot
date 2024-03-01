@@ -24,7 +24,7 @@ namespace GeniusIdiotConsoleApp
                     int randomQuestionIndex = random.Next(0, countLeftQuestions);
                     Console.WriteLine($"Вопрос №{i + 1}. {questions[randomQuestionIndex]}");
 
-                    int userAnswer = Convert.ToInt32(Console.ReadLine());
+                    int userAnswer = GetUserAnswer();
                     int rightAnswer = answers[randomQuestionIndex];
 
                     if (userAnswer == rightAnswer)
@@ -40,6 +40,23 @@ namespace GeniusIdiotConsoleApp
                 Console.WriteLine($"Количество правильных ответов: {countRightAnswers}");
                 Console.WriteLine($"{name}, Ваш диагноз: {diagnosis}");
                 userWantsToContinue = GetUserDecision();
+            }
+        }
+
+        static int GetUserAnswer()
+        {
+            while (true)
+            {
+                string userAnswer = Console.ReadLine();
+
+                if (int.TryParse(userAnswer, out int answer))
+                {
+                    return answer;
+                }
+                else
+                {
+                    Console.WriteLine("Ответ должен быть числом, по модулю не превыщающим 2000000000!");
+                }
             }
         }
 
