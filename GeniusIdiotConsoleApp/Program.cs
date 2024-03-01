@@ -36,7 +36,7 @@ namespace GeniusIdiotConsoleApp
                     answers.RemoveAt(randomQuestionIndex);
                 }
 
-                string diagnosis = GetDiagnosis(countRightAnswers);
+                string diagnosis = GetDiagnosis(countRightAnswers, countQuestions);
                 Console.WriteLine($"Количество правильных ответов: {countRightAnswers}");
                 Console.WriteLine($"{name}, Ваш диагноз: {diagnosis}");
                 userWantsToContinue = GetUserDecision();
@@ -86,17 +86,34 @@ namespace GeniusIdiotConsoleApp
             return answers;
         }
 
-        static string GetDiagnosis(int countRightAnswers)
+        static string GetDiagnosis(int countRightAnswers, int countQuestions)
         {
             string diagnosis = string.Empty;
-            switch (countRightAnswers)
+            double diagnosisInPercent = (double)countRightAnswers / countQuestions;
+
+            if (diagnosisInPercent <= 0.2)
             {
-                case 0: diagnosis = "Идиот"; break;
-                case 1: diagnosis = "Кретин"; break;
-                case 2: diagnosis = "Дурак"; break;
-                case 3: diagnosis = "Нормальный"; break;
-                case 4: diagnosis = "Талант"; break;
-                case 5: diagnosis = "Гений"; break;
+                diagnosis = "Идиот";
+            }
+            if (diagnosisInPercent >= 0.2)
+            {
+                diagnosis = "Кретин";
+            }
+            if (diagnosisInPercent >= 0.4)
+            {
+                diagnosis = "Дурак";
+            }
+            if (diagnosisInPercent >= 0.6)
+            {
+                diagnosis = "Нормальный";
+            }
+            if (diagnosisInPercent >= 0.8)
+            {
+                diagnosis = "Талант";
+            }
+            if (diagnosisInPercent >= 0.9)
+            {
+                diagnosis = "Гений";
             }
 
             return diagnosis;
